@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  app:
+    image: node:22-bookworm
+    container_name: mybankagent_app_dev
+    restart: always
+    volumes:
+      - .:/workspace:cached
+    environment:
+      - DATABASE_URL=mysql://root:root_secure_password_123@mysql-db:3306/mybankagent_dev
+    command: sleep infinity # Holder containeren i gang så du kan jobbe i den
+    network_mode: service:mysql-db
+
+  mysql-db:
+    image: mysql:8.0
+    container_name: mybankagent_mysql_dev
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root_secure_password_123
+      MYSQL_DATABASE: mybankagent_dev
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:

@@ -1,0 +1,24 @@
+meta {
+  name: Logout
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{BANK_BASE_URL}}/oauth/logout?id_token_hint=id_token_hint&post_logout_redirect_uri={{BANK_REDIRECT_URI}}
+  body: none
+  auth: inherit
+}
+
+params:query {
+  id_token_hint: id_token_hint
+  post_logout_redirect_uri: {{BANK_REDIRECT_URI}}
+}
+
+headers {
+  Authorization: Bearer  {{BANK_ACCESS_TOKEN}}
+}
+
+docs {
+  As of now, this does not seem to work, as I am not sure what `id_token_hint` is refering to.
+}

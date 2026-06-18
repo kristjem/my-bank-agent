@@ -1,0 +1,15 @@
+meta {
+  name: Hello World
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{BANK_BASE_URL}}/common/helloworld
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{BANK_ACCESS_TOKEN}}
+}

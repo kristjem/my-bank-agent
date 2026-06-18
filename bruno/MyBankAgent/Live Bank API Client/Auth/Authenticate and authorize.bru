@@ -1,0 +1,24 @@
+meta {
+  name: Authenticate and authorize
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{BANK_BASE_URL}}/oauth/authorize?client_id={{BANK_CLIENT_ID}}&state={{BANK_STATE}}&redirect_uri=http://localhost:3001/auth/callback&finInst={{BANK_FIN_INST}}&response_type=code
+  body: none
+  auth: inherit
+}
+
+params:query {
+  client_id: {{BANK_CLIENT_ID}}
+  state: {{BANK_STATE}}
+  redirect_uri: http://localhost:3001/auth/callback
+  finInst: {{BANK_FIN_INST}}
+  response_type: code
+}
+
+docs {
+  * `BANK_STATE` provided by the client, and can be any number. It can be used to track your requests
+  * `BANK_FIN_INST` is assumed to be the banks identifier
+}

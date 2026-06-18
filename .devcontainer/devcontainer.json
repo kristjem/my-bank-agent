@@ -1,0 +1,19 @@
+{
+    "name": "MyBankAgent - Dev Environment",
+    "dockerComposeFile": [
+        "../docker-compose.yml"
+    ],
+    "service": "app",
+    "workspaceFolder": "/workspace",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "dbaeumer.vscode-eslint",
+                "firsttris.vscode-jest-runner",
+                "editorconfig.editorconfig",
+                "mguenther.vscode-bruno"
+            ]
+        }
+    },
+    "remoteUser": "node"
+}

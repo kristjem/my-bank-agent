@@ -1,0 +1,31 @@
+meta {
+  name: Refresh Oauth access token
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{BANK_BASE_URL}}/oauth/token
+  body: formUrlEncoded
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/x-www-form-urlencoded
+  : 
+}
+
+body:form-urlencoded {
+  client_id: {{BANK_CLIENT_ID}}
+  client_secret: {{BANK_CLIENT_SECRET}}
+  grant_type: refresh_token
+  refresh_token: {{BANK_REFRESH_TOKEN}}
+}
+
+script:post-response {
+  let access_token = res.body.access_token;
+  let refresh_token = res.body.refresh_token;
+  
+  bru.setEnvVar("BANK_ACCESS_TOKEN",access_token)
+  bru.setEnvVar("BANK_REFRESH_TOKEN",refresh_token)
+}
